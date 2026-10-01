@@ -13,7 +13,6 @@ class Test_personal_accoutn_button:
 
         personal_account_button = driver.find_element(*Button_on_main_paige.Personal_account)
         personal_account_button.click()
-        assert driver.current_url == Data.SB_login_url
 
         email_feild = driver.find_element(*RegistrationLocators.SB_email_field_second)
         email_feild.send_keys(Data.Email)

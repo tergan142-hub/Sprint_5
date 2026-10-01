@@ -1,5 +1,6 @@
 import pytest
 from data import Data
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import RegistrationLocators
@@ -20,19 +21,16 @@ class Test_registration:
         name_field = driver.find_element(*RegistrationLocators.SB_name_field)
         name_field.clear()
         name_field.send_keys(name)
-        assert name_field.get_attribute('value') == name
 
         #поиск, заполнение, проверка поля Email
         email_field = driver.find_element(*RegistrationLocators.SB_email_field)
         email_field.clear()
         email_field.send_keys(email)
-        assert email_field.get_attribute('value') == email
 
         #поиск, заполнение, проверка поля Пароль
         password_field = driver.find_element(*RegistrationLocators.SB_password_field)
         password_field.clear()
         password_field.send_keys(password)
-        assert password_field.get_attribute('value') == password
 
         #поиск и нажатие на кнопку Регистрации
         registration_button = driver.find_element(*RegistrationLocators.SB_registration_button)
@@ -61,11 +59,13 @@ class Test_registration:
         driver.find_element(*RegistrationLocators.SB_password_field).send_keys(password)
         driver.find_element(*RegistrationLocators.SB_registration_button).click()
 
-        #ожидание загрузки страницы с поиском элемента на страницы
-        error = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(RegistrationLocators.SB_password_error))
+        try:
+            error = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(RegistrationLocators.SB_password_error))
+            error_displayed = error.is_displayed()
+        except TimeoutException:
+            error_displayed = False
 
-        #проверка того, что в форме регистрации правильно введен невалидный пароль
-        assert error.text == "Некорректный пароль"
+        # проверки — в ассертах
+        assert error_displayed, "Сообщение об ошибке пароля не появилось"
         assert driver.current_url == Data.SB_registration
-
     

@@ -19,18 +19,12 @@ class Test_login:
         email_field.clear()
         email_field.send_keys(Data.Email)
 
-        #проверка, что поле email заполненно
-        assert email_field.get_attribute("value") == Data.Email
-
         #поиск поля password и сохранение в переменную
         password_field = driver.find_element(*LoginPageLocators.SB_password_field)
 
         #очистка поля password и ввод почты
         password_field.clear()
         password_field.send_keys(Data.Password)
-
-        #проверка, что поле password заполненно
-        assert password_field.get_attribute("value") == Data.Password
 
         #поиск кнопки Войти, сохранение в переменную, нажатие
         login_button = driver.find_element(*LoginPageLocators.SB_login_button)

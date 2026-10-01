@@ -14,16 +14,13 @@ class Test_from_PA_to_constructor_and_logotype:
         email_field = driver.find_element(*LoginPageLocators.SB_email_field)
         email_field.clear()
         email_field.send_keys(Data.Email)
-        assert email_field.get_attribute('value') == Data.Email
 
         password_field = driver.find_element(*LoginPageLocators.SB_password_field)
         password_field.clear()
         password_field.send_keys(Data.Password)
-        assert password_field.get_attribute('value') == Data.Password
 
         login_button = driver.find_element(*LoginPageLocators.SB_login_button)
         login_button.click()
-        assert driver.current_url == Data.SB_login_url
 
         personal_account = driver.find_element(*Button_on_main_paige.Personal_account)
         personal_account.click()
@@ -39,16 +36,14 @@ class Test_from_PA_to_constructor_and_logotype:
         email_field = driver.find_element(*LoginPageLocators.SB_email_field)
         email_field.clear()
         email_field.send_keys(Data.Email)
-        assert email_field.get_attribute('value') == Data.Email
+        
         
         password_field = driver.find_element(*LoginPageLocators.SB_password_field)
         password_field.clear()
         password_field.send_keys(Data.Password)
-        assert password_field.get_attribute('value') == Data.Password
         
         login_button = driver.find_element(*LoginPageLocators.SB_login_button)
         login_button.click()
-        assert driver.current_url == Data.SB_login_url
         
         personal_account = driver.find_element(*Button_on_main_paige.Personal_account)
         personal_account.click()

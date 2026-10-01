@@ -23,7 +23,7 @@ class RegistrationLocators:
     SB_registration_button = (By.XPATH, "//button[text()='Зарегистрироваться']")
     SB_registration_button_second = (By.XPATH, "//a[@href='/register']")
 
-    SB_password_error = (By.XPATH, "//p[text()='Некорректный пароль']")
+    SB_password_error = (By.XPATH, "//p[@class='input__error text_type_main-default']")
 
     SB_recovery_button = (By.XPATH, "//a[text()='Восстановить пароль']")
 
@@ -34,12 +34,14 @@ class Button_on_main_paige:
 
     Personal_account = (By.XPATH, "//p[text()='Личный Кабинет']")
 
-    Buns_button = (By.XPATH, "//span[text()='Булки']")
+    Buns_button = (By.XPATH, "//div[span[text()='Булки']]")
+    Buns_button_active = (By.XPATH, "//div[contains(@class,'tab_tab_type_current__') and span[text()='Булки']]")
     
-    Sauce_button = (By.XPATH, "//span[text()='Соусы']")
-    
-    Fillings_button = (By.XPATH, "//span[text()='Начинки']")
+    Sauce_button = (By.XPATH, "//div[span[text()='Соусы']]")
+    Sauce_button_active = (By.XPATH, "//div[contains(@class,'tab_tab_type_current__') and span[text()='Соусы']]")
 
+    Fillings_button = (By.XPATH, "//div[span[text()='Начинки']]")
+    Fillings_button_active = (By.XPATH, "//div[contains(@class,'tab_tab_type_current__') and span[text()='Начинки']]")
 
 class Img_on_main_page:
 
