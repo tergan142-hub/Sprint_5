@@ -59,13 +59,9 @@ class Test_registration:
         driver.find_element(*RegistrationLocators.SB_password_field).send_keys(password)
         driver.find_element(*RegistrationLocators.SB_registration_button).click()
 
-        try:
-            error = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(RegistrationLocators.SB_password_error))
-            error_displayed = error.is_displayed()
-        except TimeoutException:
-            error_displayed = False
+        # Ассерт с ожиданием появления сообщения об ошибке
+        error_element = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(RegistrationLocators.SB_password_error))
+        assert error_element.is_displayed(), "Сообщение об ошибке пароля не появилось"
 
-        # проверки — в ассертах
-        assert error_displayed, "Сообщение об ошибке пароля не появилось"
+        # Проверка, что страница не сменилась
         assert driver.current_url == Data.SB_registration
-    
